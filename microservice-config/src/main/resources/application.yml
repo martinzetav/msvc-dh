@@ -1,0 +1,19 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/martinzetav/configServer.git
+
+
+eureka:
+  instance:
+    hostname: localhost
+
+
+

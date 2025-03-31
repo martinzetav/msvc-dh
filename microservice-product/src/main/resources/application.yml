@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: microservice-product
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: config-server
+  config:
+    import: optional:configserver:http://localhost:8888
+
+server:
+  port: 8090
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: microservice-product
+    description: microservicio de ejemplo
+    version: 1.0.0
+
+eureka:
+  instance:
+    hostname: localhost
+    statusPageUrlPath: http://localhost:8090/actuator/info
+    healthCheckUrlPath: http://localhost:8090/actuator/health
