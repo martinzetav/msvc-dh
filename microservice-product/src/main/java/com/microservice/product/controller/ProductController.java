@@ -16,6 +16,7 @@ public class ProductController {
                 .id(id)
                 .name("Notebook")
                 .price(2000.0)
+                .instance("Instance 1")
                 .build();
     }
 

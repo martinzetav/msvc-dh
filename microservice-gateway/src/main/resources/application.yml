@@ -1,0 +1,13 @@
+spring:
+  config:
+    import: "optional:configserver:"
+  application:
+    name: microservice-gateway
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: microservice-config
+
+server:
+  port: 8080

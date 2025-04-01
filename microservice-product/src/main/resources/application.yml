@@ -5,9 +5,9 @@ spring:
     config:
       discovery:
         enabled: true
-        serviceId: config-server
+        serviceId: microservice-config
   config:
-    import: optional:configserver:http://localhost:8888
+    import: "optional:configserver:"
 
 server:
   port: 8090
@@ -32,3 +32,5 @@ eureka:
     hostname: localhost
     statusPageUrlPath: http://localhost:8090/actuator/info
     healthCheckUrlPath: http://localhost:8090/actuator/health
+    metadata-map:
+      weight: 80

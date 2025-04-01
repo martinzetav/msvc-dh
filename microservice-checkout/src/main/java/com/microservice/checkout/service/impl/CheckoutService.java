@@ -20,6 +20,7 @@ public class CheckoutService implements ICheckoutService {
         Double total = 0.0;
         for(String id: productIds){
             ProductDTO product = productService.getProduct(id);
+            System.out.println("Respuesta desde " + product.getInstance());
             total += product.getPrice();
         }
 
