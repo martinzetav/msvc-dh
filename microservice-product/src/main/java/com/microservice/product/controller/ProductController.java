@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductController {
 
     @GetMapping
-    public Product getProduct(@RequestParam String id){
+    public Product getProduct(@RequestParam String id, @RequestParam(defaultValue = "false") Boolean throwError){
+        if(throwError){
+            throw new RuntimeException();
+        }
         return Product.builder()
                 .id(id)
                 .name("Notebook")
@@ -19,6 +22,7 @@ public class ProductController {
                 .instance("Instance 1")
                 .build();
     }
+
 
 
 }

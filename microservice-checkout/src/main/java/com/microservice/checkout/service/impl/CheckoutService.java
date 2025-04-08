@@ -33,7 +33,8 @@ public class CheckoutService implements ICheckoutService {
         return Checkout.builder()
                 .id("234")
                 .url("www.digitalhouse.com/checkout")
-                .totalAmount(String.valueOf(total))
+                .totalAmount(total.toString())
+                .availableMethods(List.of("credit card", "debit card"))
                 .build();
     }
 }

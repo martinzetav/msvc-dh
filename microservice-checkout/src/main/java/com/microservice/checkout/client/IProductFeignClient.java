@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface IProductFeignClient {
 
     @GetMapping("/products")
-    ProductDTO getProductById(@RequestParam String id);
+    ProductDTO getProductById(@RequestParam String id, @RequestParam Boolean throwError);
 }
