@@ -25,8 +25,17 @@ public class ProductService implements IProductService {
         return productFeignClient.getProductById(id, true);
     }
 
-    public ProductDTO getProductFallbackMethod(String id, CallNotPermittedException e){
-        log.error("Circuit breaker en estado Open");
-        return new ProductDTO();
+    public ProductDTO getProductFallbackMethod(String id, Exception e){
+        if (e instanceof CallNotPermittedException) {
+            log.error("Circuit Breaker bloqueó la llamada - Estado: OPEN");
+        } else {
+            log.error("Fallback por error en llamada: " + e.getMessage());
+        }
+
+        return  ProductDTO.builder()
+                .id("fallback-" + id)
+                .name("Producto no disponible")
+                .price(0.0)
+                .build();
     }
 }

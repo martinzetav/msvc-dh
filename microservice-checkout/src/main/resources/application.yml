@@ -22,14 +22,22 @@ resilience4j:
   circuitbreaker:
     instances:
       product:
-        allowHealthIndicatorToFail: false
-        registerHealthIndicator: true
         slidingWindowType: COUNT_BASED
         slidingWindowSize: 5
-        failureRateThreshold: 50
-        waitDurationInOpenState: 15000
+        minimumNumberOfCalls: 5  # Asegura que evalúe después de 5 llamadas
+        failureRateThreshold: 50 # 50% de fallos activa el CB
+        waitDurationInOpenState: 15s
         permittedNumberOfCallsInHalfOpenState: 3
         automaticTransitionFromOpenToHalfOpenEnabled: true
+        recordExceptions:  # Especifica qué excepciones deben contar como fallos
+          - java.lang.RuntimeException
+          - org.springframework.web.client.HttpServerErrorException
+          - java.io.IOException
+
+#allowHealthIndicatorToFail: false
+#registerHealthIndicator: true
+
+
 
 
 
