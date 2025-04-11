@@ -5,6 +5,7 @@ import com.microservice.checkout.dto.ProductDTO;
 import com.microservice.checkout.service.IProductService;
 import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +22,9 @@ public class ProductService implements IProductService {
 
     @Override
     @CircuitBreaker(name = "product", fallbackMethod = "getProductFallbackMethod")
+    @Retry(name = "product")
     public ProductDTO getProduct(String id) {
+        log.info("Intentando obtener el producto con id: " + id);
         return productFeignClient.getProductById(id, true);
     }
 

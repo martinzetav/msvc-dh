@@ -9,7 +9,7 @@ spring:
     loadBalancer:
       configurations: weighted
   config:
-    import: optional:configserver:http://localhost:8888
+    import: "optional:configserver:"
 
 eureka:
   instance:
@@ -18,19 +18,7 @@ eureka:
 server:
   port: 9090
 
-resilience4j:
-  circuitbreaker:
-    instances:
-      product:
-        slidingWindowType: COUNT_BASED
-        slidingWindowSize: 5
-        minimumNumberOfCalls: 5  # Asegura que evalúe después de 5 llamadas
-        failureRateThreshold: 50 # 50% de fallos activa el CB
-        waitDurationInOpenState: 15s
-        permittedNumberOfCallsInHalfOpenState: 3
-        automaticTransitionFromOpenToHalfOpenEnabled: true
-        allowHealthIndicatorToFail: false
-        registerHealthIndicator: true
+
 
 
 
