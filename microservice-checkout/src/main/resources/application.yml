@@ -29,13 +29,8 @@ resilience4j:
         waitDurationInOpenState: 15s
         permittedNumberOfCallsInHalfOpenState: 3
         automaticTransitionFromOpenToHalfOpenEnabled: true
-        recordExceptions:  # Especifica qué excepciones deben contar como fallos
-          - java.lang.RuntimeException
-          - org.springframework.web.client.HttpServerErrorException
-          - java.io.IOException
-
-#allowHealthIndicatorToFail: false
-#registerHealthIndicator: true
+        allowHealthIndicatorToFail: false
+        registerHealthIndicator: true
 
 
 
